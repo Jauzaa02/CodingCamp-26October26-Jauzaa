@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "Expense & Budget Visualizer",
+  "short_name": "ExpenseApp",
+  "version": "1.0.0",
+  "description": "Aplikasi pencatat pengeluaran harian dan visualisasi anggaran.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f4f6f8",
+  "theme_color": "#3498db",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/2331/2331941.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

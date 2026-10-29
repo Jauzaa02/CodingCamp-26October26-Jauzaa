@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- Viewport wajib agar responsif di HP, Tablet, dan Laptop -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Konfigurasi Standalone App untuk HP & Laptop -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#3498db">
+  <link rel="manifest" href="manifest.json">
+
+  <title>Expense & Budget Visualizer</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="container">
+    <header class="app-header">
+      <h1>Expense & Budget Visualizer</h1>
+      <button id="theme-toggle" class="btn-secondary" type="button">🌙 Dark Mode</button>
+    </header>
+
+    <section class="card balance-card">
+      <p class="balance-label">TOTAL BALANCE</p>
+      <h2 id="total-balance" class="balance-amount">$0.00</h2>
+
+      <div class="summary-badges">
+        <span class="badge" id="monthly-summary">This Month: $0.00</span>
+        <span class="badge" id="total-items">0 Transactions</span>
+      </div>
+
+      <div class="limit-control">
+        <label for="spending-limit">Budget Limit Alert ($):</label>
+        <input type="number" id="spending-limit" placeholder="e.g. 50.00" min="0" step="0.01">
+      </div>
+      <p id="limit-warning" class="limit-warning hidden">
+        ⚠️ Warning: Your spending has exceeded the set budget limit!
+      </p>
+    </section>
+
+    <section class="card">
+      <h3>Add Transaction</h3>
+      <form id="transaction-form" novalidate>
+        <div class="form-group">
+          <label for="item-name">Item Name</label>
+          <input type="text" id="item-name" placeholder="Cilok" required>
+        </div>
+
+        <div class="form-group">
+          <label for="item-amount">Amount</label>
+          <input type="number" id="item-amount" placeholder="14.94" min="0.01" step="0.01" required>
+        </div>
+
+        <div class="form-group">
+          <label for="item-category">Category</label>
+          <select id="item-category" required>
+            <option value="Food">Food</option>
+            <option value="Transport">Transport</option>
+            <option value="Fun">Fun</option>
+          </select>
+        </div>
+
+        <div class="custom-category-box">
+          <input type="text" id="new-category-input" placeholder="Add custom category (e.g. Health)">
+          <button type="button" id="add-category-btn" class="btn-secondary">+ Add Category</button>
+        </div>
+
+        <p id="form-error" class="error-msg hidden">Please fill in all fields with valid values.</p>
+        <button type="submit" class="btn-primary">Add Transaction</button>
+      </form>
+    </section>
+
+    <div class="bottom-grid">
+      <section class="card">
+        <div class="list-header">
+          <h3>Transactions</h3>
+          <div class="filter-controls">
+            <select id="month-filter" aria-label="Filter by Month">
+              <option value="all">All Months</option>
+            </select>
+            <select id="sort-select" aria-label="Sort Transactions">
+              <option value="newest">Newest</option>
+              <option value="amount-desc">Amount (High-Low)</option>
+              <option value="amount-asc">Amount (Low-High)</option>
+              <option value="category">Category (A-Z)</option>
+            </select>
+          </div>
+        </div>
+        <div id="transaction-list" class="transaction-list"></div>
+      </section>
+
+      <section class="card">
+        <h3>Spending by Category</h3>
+        <div class="chart-container">
+          <canvas id="expense-chart"></canvas>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- Memanggil js/app.js -->
+  <script src="js/app.js"></script>
+</body>
+</html>
